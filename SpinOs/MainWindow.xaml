@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpinOs"
         mc:Ignorable="d"
-        Title="SpinOs" Height="500" Width="800" Background="AliceBlue" >
+        Title="SpinOs" Height="500" Width="800">
+    <Window.Background>
+        <ImageBrush x:Name="SpinOsMainBackground"/>
+    </Window.Background>
     <Grid>
 
         <Grid.ColumnDefinitions>

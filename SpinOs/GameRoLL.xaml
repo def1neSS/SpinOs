@@ -50,15 +50,15 @@
         <TextBlock x:Name="roll_slot_2" Grid.Row="1" Grid.Column="4" Text="-----" TextAlignment="Center" FontSize="18" FontFamily="Monaco" Background="CornflowerBlue" Margin="2" FontWeight="DemiBold" Foreground="White" />
         <TextBlock x:Name="roll_slot_3" Grid.Row="1" Grid.Column="5" Text="-----" TextAlignment="Center" FontSize="18" FontFamily="Monaco" Background="CornflowerBlue" Margin="2" FontWeight="DemiBold" Foreground="White" />
 
-        <TextBlock Grid.Row="2" Grid.Column="3" Text="" TextWrapping="Wrap" TextAlignment="Center" FontSize="18" FontFamily="Consolas" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="2" Grid.Column="5" Text="Очки" TextWrapping="Wrap" TextAlignment="Center" FontSize="18" FontFamily="Consolas" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="Тут пока" TextWrapping="Wrap" TextAlignment="Center" FontSize="18" FontFamily="Consolas" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="5" Text="ничего неть" TextWrapping="Wrap" TextAlignment="Center" FontSize="18" FontFamily="Consolas" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 
         <Button x:Name="fc_button" Grid.Column="2" Grid.Row="3" Content="FC" Height="70" VerticalAlignment="Bottom" Margin="10,0,10,183" Background="LawnGreen" BorderThickness="3" FontSize="20" FontFamily="Consolas" FontWeight="Bold" Click="fc_button_fun" />
         <Button x:Name="pass_button" Grid.Column="2" Grid.Row="3" Content="Pass" Height="70" VerticalAlignment="Bottom" Margin="10,0,10,100" Background="Orange" BorderThickness="3" FontSize="20" FontFamily="Consolas" FontWeight="Bold" Click="pass_button_fun"/>
         <Button x:Name="fail_button" Grid.Column="2" Grid.Row="3" Content="Fail" Height="70" VerticalAlignment="Bottom" Margin="10,0,10,17" Background="OrangeRed" BorderThickness="3" FontSize="20" FontFamily="Consolas" FontWeight="Bold" Click="fail_button_fun"/>
 
         <Border Grid.Row="3" Grid.Column="3" BorderThickness="2" BorderBrush="DarkGray" Margin="3">
-            <TextBlock x:Name="rule1" TextWrapping="Wrap"  Background="LightGray" FontFamily="Consolas"/>
+            <TextBlock x:Name="rule1" Text="" TextWrapping="Wrap"  Background="LightGray" FontFamily="Consolas"/>
         </Border>
         <Border Grid.Row="3" Grid.Column="4" BorderThickness="2" BorderBrush="DarkGray" Margin="3">
             <TextBlock x:Name="rule2" TextWrapping="Wrap"  Background="LightGray" FontFamily="Consolas"/>

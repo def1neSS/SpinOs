@@ -61,8 +61,8 @@ namespace SpinOs.Data
             slots[1].Background = Brushes.Blue;
             
             per = rnd.Next(0, 100);
-            if (per > 75) { /*slots[1].Text*/ temp_text = result_type[0].ToString(); } // 25 %  -  FC
-            else { /*slots[1].Text*/temp_text = result_type[1].ToString(); }         // 75 %  -  PASS
+            if (per > 80) { /*slots[1].Text*/ temp_text = result_type[0].ToString(); } // 20 %  -  FC
+            else { /*slots[1].Text*/temp_text = result_type[1].ToString(); }         // 80 %  -  PASS
             slots[1].Background = Brushes.CornflowerBlue;
 
             waiting(slots, 1, temp_text);

@@ -34,6 +34,7 @@ namespace SpinOs
         public MainWindow()
         {
             InitializeComponent();
+            SpinOsMainBackground.ImageSource = new BitmapImage(new Uri("../../Data/wall_main.jpg", UriKind.Relative)); //фоновая картинка;
             InitDataFiles();
             indexer = 0;
         }
