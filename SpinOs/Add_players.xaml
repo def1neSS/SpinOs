@@ -1,0 +1,19 @@
+﻿<Window x:Class="SpinOs.Add_players"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpinOs"
+        mc:Ignorable="d"
+        Title="Add" Height="300" Width="150" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.15*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="add_players_box" Grid.Row ="0"  Background="Gray" BorderThickness="3" FontFamily="Consolas" FontSize="18" TextWrapping="Wrap" AcceptsReturn="True" CaretBrush="Aqua"/>
+        <Button x:Name="add_players_button" Grid.Row ="1" Content="ADD" BorderThickness="3" Click="add_players_button_Click" />
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+                Application excelApp = new Application();
+                if (excelApp == null)
+                {
+                    Console.WriteLine("Excel is not installed!!");
+                    return;
+                }
+                else
+                {
+                    Workbook excelBook = excelApp.Workbooks.Open(dir + @"\..\..\Data\difficulties.xlsx");
+                    Worksheet excelSheet = excelBook.Sheets[1];
+                    Range excelRange = excelSheet.UsedRange;
+
+                    for(int i = 1; i < excelRange.Count; i++)
+                    {
+                        Range usedColumn = excelSheet.UsedRange.Columns[i];
+                        Array values = (Array)usedColumn.Cells.Value2;
+                        string[] strArray = values.OfType<object>().Select(o => o.ToString()).ToArray();
+                        Console.WriteLine(strArray[0]);
+                        List<int> diff = new List<int>() { Int32.Parse(strArray[1]), Int32.Parse(strArray[2]), Int32.Parse(strArray[3]), Int32.Parse(strArray[4]), Int32.Parse(strArray[5]) };
+
+                        diff_listnew.Add( new Difficulty { Name = strArray[0], Rating_complexity = diff, Percentage_complexity = 0 } );;
+                        Console.WriteLine(i);
+                    }
+
+
+
+                }

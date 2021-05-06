@@ -1,0 +1,65 @@
+﻿<Window x:Class="SpinOs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpinOs"
+        mc:Ignorable="d"
+        Title="SpinOs" Height="500" Width="800" Background="AliceBlue" >
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.4*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="4" Grid.Row="0" Content="Clear Players" FontSize="10" FontFamily="Consolas" BorderThickness="3" Margin="4" Click="clear_players_button"/>
+        <Button Grid.Column="5" Grid.Row="0" Content="Add Players" FontSize="10" FontFamily="Consolas" BorderThickness="3" Margin="4" Click="add_players_button"/>
+        <Button Grid.Column="6" Grid.Row="0" Content="Load Players" FontSize="10" FontFamily="Consolas" BorderThickness="3" Margin="4" Click="load_players_button"/>
+
+        <Button Grid.Column="6" Grid.Row="4" Content="GameRoLL" FontFamily="Consolas" FontSize="18" BorderThickness="5" Click="GameRoLL"/>
+
+        <ListView x:Name="table_players" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" FontFamily="Consolas" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="players_col" Header="Игроки" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn x:Name="score_col" Header="Очки" Width="50" DisplayMemberBinding="{Binding Score}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Grid.Column="1" Grid.Row="4" Content="Start" FontFamily="Consolas" FontSize="18" BorderThickness="5" Click="Start"/>
+
+        <Border Grid.Column="2" Grid.Row="1" BorderThickness="3" BorderBrush="DarkGray" VerticalAlignment="Top" Margin="5">
+            <TextBlock x:Name="current_player"  Text="?" FontFamily="Consolas" FontSize="20" TextAlignment="Center" Background="LightYellow"/>
+        </Border>
+
+        <Button x:Name="plus0" Grid.Column="2" Grid.Row="2" Content="0" Width="30" Height="25" HorizontalAlignment="Left" Margin="5" FontFamily="Consolas" FontSize="13" BorderThickness="3" BorderBrush="DarkGray" Click="plus0fun"/>
+        <Button x:Name="plus05" Grid.Column="2" Grid.Row="2" Content="0.5" Width="30" Height="25" HorizontalAlignment="Center" Margin="5" FontFamily="Consolas" FontSize="13" BorderThickness="3" BorderBrush="DarkGray" Click="plus05fun"/>
+        <Button x:Name="plus1" Grid.Column="2" Grid.Row="2" Content="1" Width="30" Height="25" HorizontalAlignment="Right" Margin="5" FontFamily="Consolas" FontSize="13" BorderThickness="3" BorderBrush="DarkGray" Click="plus1fun"/>
+
+        <TextBlock Grid.Column="2" Grid.Row="3" Text="Круг" Width="100" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" FontFamily="Consolas" FontSize="16" Margin="0,10,0,0" />
+        <Border Grid.Column="2" Grid.Row="3" Width="100" Height="25" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" BorderThickness="3" BorderBrush="DarkGray">
+            <TextBlock x:Name="lap_game" Text="?" TextAlignment="Center" FontFamily="Consolas" FontSize="15" Background="LightYellow"/>
+        </Border>
+
+        <Border Grid.Column="2" Grid.Row="5" Grid.ColumnSpan ="4" BorderThickness="3" BorderBrush="LightSlateGray" Margin="2">
+            <TextBlock x:Name="down_panel" Background="LightGray" FontSize="16" TextAlignment="Center" FontFamily="Consolas" />
+        </Border>
+            
+
+    </Grid>
+</Window>
