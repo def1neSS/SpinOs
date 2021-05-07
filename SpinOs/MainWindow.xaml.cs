@@ -30,6 +30,7 @@ namespace SpinOs
         public static double additionGameRoLL; // Переменная содержащая полученное кол-во очков с геймролла, к ней обращаются другие файлы // Потом исправлю код и уберу её
         public static bool resultStartAlert; // нужна для подтверждения новой игры
         public static int lap = 1; //круг игры
+        public bool isLoadPlayers = false; //проверка, что игроки были загружены // по сути костыль
 
         public MainWindow()
         {
@@ -50,7 +51,22 @@ namespace SpinOs
 
         private void load_players_button(object sender, RoutedEventArgs e) // Функция загрузки сохраненных игроков из файла // По сути только ссылается на другую функцию // Потом исправлю, мхе
         {
-            UpdateTables();
+            if (players_list.Count == 0)
+            {
+                isLoadPlayers = true;
+                UpdateTables();
+            }
+            else
+            {
+                StartAlert sa = new StartAlert();
+                sa.Owner = this;
+                sa.ShowDialog();
+                if (resultStartAlert)
+                {
+                    UpdateTables();
+                    current_player.Text = players_list[0].Name;
+                }
+            }
         }
 
         private void clear_players_button(object sender, RoutedEventArgs e) //Функция удаления списка игроков из таблицы и файла
@@ -99,10 +115,13 @@ namespace SpinOs
                     }
                     down_panel.Text = "Игрок " + players_list[indexer % (players_list.Count)].Name + " получает " + additionGameRoLL + " " + temp_score;
                 }
+
+                update_table(); // обновление таблицы после присваивания очков
+
                 players_list[indexer % (players_list.Count)].Score += additionGameRoLL; //присваивание очков игроку //мод здесь для "кольцевой очереди" или типо того, нз как это называется 
                 indexer++;
                 current_player.Text = players_list[indexer % (players_list.Count)].Name; //Переход к след.игроку // тоже мод
-                update_table(); // обновление таблицы после присваивания очков
+
 
                 additionGameRoLL = 0;
             }
@@ -127,8 +146,10 @@ namespace SpinOs
 
         private async void Start(object sender, RoutedEventArgs e) //Загрузка игроков, таблицы и еще пары параметров
         {
-            if (table_players.Items.Count==0)
+            if (table_players.Items.Count==0 || isLoadPlayers)
             {
+                isLoadPlayers = false;
+                down_panel.Text = "";
                 lap_game.Text = "1";
                 resultStartAlert = false; //для проверки новой игры
                 startflag = true;
@@ -152,7 +173,11 @@ namespace SpinOs
                 StartAlert sa = new StartAlert();
                 sa.Owner = this;
                 sa.ShowDialog();
-                if(resultStartAlert) table_players.Items.Clear();
+                if (resultStartAlert)
+                { 
+                    table_players.Items.Clear();
+                    Start(null,null);                  // Очень плохое решение !!! Происходит рекурсия при каждой новой игре ИСПРАВИТЬ
+                }
             }
         }
 
@@ -178,6 +203,7 @@ namespace SpinOs
                 down_panel.Text = "Игрок " + players_list[indexer % (players_list.Count)].Name + " получает 0 очков ";
                 indexer++;
                 current_player.Text = players_list[indexer % (players_list.Count)].Name;
+                update_table();
             }
             else
             {

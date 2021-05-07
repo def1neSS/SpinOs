@@ -38,7 +38,7 @@ namespace SpinOs
         {
             switch (res)
             {
-                case "yes": MainWindow.resultStartAlert = true; break;
+                case "yes": MainWindow.resultStartAlert = true; MainWindow.lap = 1; break;
                 case "no": break;
             }
             Close();

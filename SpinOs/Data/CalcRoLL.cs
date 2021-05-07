@@ -50,7 +50,6 @@ namespace SpinOs.Data
             }
             slots[0].Text = temp_text;
             //waiting(slots, 0, temp_text);
-            MainWindow.lap++;
         }
 
         public void resultType(List<TextBlock> slots, int indexer)
