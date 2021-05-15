@@ -4,6 +4,26 @@
              xmlns:local="clr-namespace:SpinOs"
              StartupUri="MainWindow.xaml" >
     <Application.Resources>
-         
+        <ControlTemplate x:Key="NoMouseOverButtonTemplate" 
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <!-- Add only required visual state triggers -->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"
+             Value="false">
+                    <Setter Property="Background"
+              Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground"
+              Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
     </Application.Resources>
 </Application>

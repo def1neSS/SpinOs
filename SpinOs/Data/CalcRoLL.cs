@@ -16,7 +16,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using SpinOs.Data;
-using static SpinOs.Data.InitData;
+using static SpinOs.Data.GameRoLL_InitData;
 
 namespace SpinOs.Data
 {

@@ -16,14 +16,14 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using SpinOs.Data;
-using static SpinOs.Data.InitData; // для InitDataFiles();
+//using static SpinOs.Data.InitData; // для InitDataFiles();
 
 namespace SpinOs
 {
 
     public partial class MainWindow : Window
     {
-        public string playerspath = @"..\..\Data\players.txt"; //txt файл игроков
+        public string playerspath = @"..\..\data\players.txt"; //txt файл игроков
         public int indexer; // нужна для индексации списка игроков
         List<Player> players_list = new List<Player>(); //список игроков
         bool startflag = false; // для определения окончательной загрузки параметров
@@ -35,8 +35,6 @@ namespace SpinOs
         public MainWindow()
         {
             InitializeComponent();
-            SpinOsMainBackground.ImageSource = new BitmapImage(new Uri("../../Data/wall_main.jpg", UriKind.Relative)); //фоновая картинка;
-            InitDataFiles();
             indexer = 0;
         }
 
@@ -113,7 +111,7 @@ namespace SpinOs
                         case 1.0: temp_score = "очко"; break;
                         default: temp_score = "очка"; break;
                     }
-                    down_panel.Text = "Игрок " + players_list[indexer % (players_list.Count)].Name + " получает " + additionGameRoLL + " " + temp_score;
+                    down_panel.Text = "[ Игрок " + players_list[indexer % (players_list.Count)].Name + "] получает " + additionGameRoLL + " " + temp_score;
                 }
 
                 update_table(); // обновление таблицы после присваивания очков
@@ -193,14 +191,31 @@ namespace SpinOs
             }
             if (indexer % players_list.Count == 0) update_lap();
         }
-                                                                                //ПОД ОДНУ ФУНКЦИЮ!!!!!!!!! // Тоже потом исправлю
                                                                                 //все таски с делеями нужны для визуальной составляющей, но пока беды с асинхроном, потоками и тп
                                                                                 //некоторые задачи выполняются до других и искажают данные 
-        private void plus0fun(object sender, RoutedEventArgs e)
+        private void plusfunbut1(object sender, RoutedEventArgs e)
+        {
+            double varPlus = 0;
+            plus(varPlus,"очков.");
+        }
+
+        private void plusfunbut2(object sender, RoutedEventArgs e)
+        {
+            double varPlus = 0.5;
+            plus(varPlus, "очков.");
+        }
+
+        private void plusfunbut3(object sender, RoutedEventArgs e)
+        {
+            double varPlus = 1;
+            plus(varPlus,"очко.");
+        }
+        private void plus(double x, string end)
         {
             if (startflag)
             {
-                down_panel.Text = "Игрок " + players_list[indexer % (players_list.Count)].Name + " получает 0 очков ";
+                down_panel.Text = "Игрок [" + players_list[indexer % (players_list.Count)].Name + "] получает " + x + " " + end;
+                players_list[indexer % (players_list.Count)].Score += x;
                 indexer++;
                 current_player.Text = players_list[indexer % (players_list.Count)].Name;
                 update_table();
@@ -208,64 +223,12 @@ namespace SpinOs
             else
             {
                 down_panel.Text = " Нажмите кнопку Start ";
-                /*
-                down_panel.Background = Brushes.Red;
-                await Task.Delay(100);
-                down_panel.Background = Brushes.LightGray;
-                */
             }
         }
-
-        private void plus05fun(object sender, RoutedEventArgs e)
-        {
-            if (startflag)
-            {
-                down_panel.Text = "Игрок " + players_list[indexer % (players_list.Count)].Name + " получает 0.5 очков ";
-                players_list[indexer % (players_list.Count)].Score += 0.5;
-                indexer++;
-                current_player.Text = players_list[indexer % (players_list.Count)].Name;
-                update_table();
-            }
-            else
-            {
-                down_panel.Text = " Нажмите кнопку Start ";
-                /*
-                down_panel.Background = Brushes.Red;
-                await Task.Delay(100);
-                down_panel.Background = Brushes.LightGray;
-                */
-            }
-        }
-
-        private void plus1fun(object sender, RoutedEventArgs e)
-        {
-            if (startflag)
-            {
-                down_panel.Text = "Игрок " + players_list[indexer % (players_list.Count)].Name + " получает 1 очко ";
-                players_list[indexer % (players_list.Count)].Score += 1;
-                indexer++;
-                current_player.Text = players_list[indexer % (players_list.Count)].Name;
-                update_table();
-            }
-            else
-            {
-                down_panel.Text = " Нажмите кнопку Start ";
-                /*
-                down_panel.Background = Brushes.Red;
-                await Task.Delay(100);
-                down_panel.Background = Brushes.LightGray;
-                */
-            }
-        }
-
         public void update_lap()
         {
             lap++;
             lap_game.Text = lap.ToString();
-        }
-        private void plus()
-        {
-
         }
 
     }

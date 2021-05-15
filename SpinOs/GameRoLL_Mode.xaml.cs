@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,24 +18,27 @@ using System.IO;
 using SpinOs.Data;
 using static SpinOs.Data.GameRoLL_InitData;
 
+
 namespace SpinOs
 {
-    public partial class GameRoLL : Window
+    public partial class GameRoLL_Mode : Window
     {
-        List<TextBlock> slots = new List<TextBlock>(); // список текстблоков слотов
+        public List<TextBlock> slots = new List<TextBlock>(); // список текстблоков слотов
+        public List<TextBlock> info_tables = new List<TextBlock>(); // список текстблоков слотов
 
-        public GameRoLL()
+        public GameRoLL_Mode()
         {
 
             InitializeComponent();
-            InitDataFiles();
-            GameRoLLBackground.ImageSource = new BitmapImage(new Uri("../../Data/images/wall.png", UriKind.Relative)); //фоновая картинка
+
+            GameRoLLBackground.ImageSource = new BitmapImage(new Uri("../../Data/wall.png", UriKind.Relative)); //фоновая картинка
             InitListsFromData();
         }
 
         public void InitListsFromData() //загрузка из файлов и инициализация данных
         {
-            slots = slots_init(roll_slot_1, roll_slot_2, roll_slot_3); //потом исправлю
+            slots = slots_init(roll_slot_1, roll_slot_2, roll_slot_3);
+
             rule1.Text = rules[0];
             rule2.Text = rules[1];
             rule3.Text = rules[2];
@@ -44,9 +47,9 @@ namespace SpinOs
         private int detect_difficulty() //определяет выставленную сложность из выпадающего списка
         {
             int indexer = 0;
-            foreach(Difficulty d in diff_listnew)
+            foreach (Difficulty d in diff_listnew)
             {
-                if(d.Name == complexity_menu.Text)
+                if (d.Name == complexity_menu.Text)
                 {
                     break;
                 }

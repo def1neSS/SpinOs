@@ -1,0 +1,20 @@
+Easy
+NM - 60% HD - 40%
+HR -  0% DT -  0% 
+FL -  0%
+1
+Medium
+NM - 40% HD - 35%
+HR - 25% DT -  0% 
+FL -  0%
+1.5
+Hard
+NM - 15% HD - 25%
+HR - 45% DT - 15% 
+FL -  0%
+2
+Impossible
+NM -  0% HD - 10%
+HR - 15% DT - 70% 
+FL -  5%
+3

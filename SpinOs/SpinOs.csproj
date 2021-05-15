@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\MainWindow_InitData.cs" />
+    <Compile Include="GameRoLL_Mode.xaml.cs">
+      <DependentUpon>GameRoLL_Mode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StartAlert.xaml.cs">
       <DependentUpon>StartAlert.xaml</DependentUpon>
     </Compile>
@@ -64,6 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GameRoLL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameRoLL_Mode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,7 +90,7 @@
     <Compile Include="Data\CalcRoLL.cs" />
     <Compile Include="Data\CompareForSort.cs" />
     <Compile Include="Data\Difficulty.cs" />
-    <Compile Include="Data\InitData.cs" />
+    <Compile Include="Data\GameRoLL_InitData.cs" />
     <Compile Include="Data\Player.cs" />
     <Compile Include="GameRoLL.xaml.cs">
       <DependentUpon>GameRoLL.xaml</DependentUpon>
@@ -149,6 +158,30 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\button_clear_players.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\button_add_players.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\button_load_players.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\button_gameroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\button_start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\log_lines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\wall_main.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

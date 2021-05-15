@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpinOs"
         mc:Ignorable="d"
-        Title="SpinOs" Height="500" Width="800">
+        Title="SpinOs" Height="620" Width="1000">
+    
     <Window.Background>
-        <ImageBrush x:Name="SpinOsMainBackground"/>
+        <ImageBrush x:Name="SpinOsMainBackground" ImageSource="Data\images\wall_main.jpg"/>
     </Window.Background>
     <Grid>
 
@@ -29,40 +30,84 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="4" Grid.Row="0" Content="Clear Players" FontSize="10" FontFamily="Consolas" BorderThickness="3" Margin="4" Click="clear_players_button"/>
-        <Button Grid.Column="5" Grid.Row="0" Content="Add Players" FontSize="10" FontFamily="Consolas" BorderThickness="3" Margin="4" Click="add_players_button"/>
-        <Button Grid.Column="6" Grid.Row="0" Content="Load Players" FontSize="10" FontFamily="Consolas" BorderThickness="3" Margin="4" Click="load_players_button"/>
+        <!--<Button Grid.Column="4" Grid.Row="0" Content="Clear Players" FontSize="10" FontFamily="Consolas" BorderThickness="3" Margin="4" Click="clear_players_button"/>-->
+        <Button Grid.Column="4" Grid.Row="0" Click="clear_players_button" BorderThickness="0" Margin="-6" Template="{StaticResource NoMouseOverButtonTemplate}" >
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\button_clear_players.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <Button Grid.Column="5" Grid.Row="0" Click="add_players_button" BorderThickness="0" Margin="-6" Template="{StaticResource NoMouseOverButtonTemplate}" >
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\button_add_players.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <Button Grid.Column="6" Grid.Row="0" Click="load_players_button" BorderThickness="0" Margin="-6" Template="{StaticResource NoMouseOverButtonTemplate}" >
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\button_load_players.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
 
-        <Button Grid.Column="6" Grid.Row="4" Content="GameRoLL" FontFamily="Consolas" FontSize="18" BorderThickness="5" Click="GameRoLL"/>
+        <Button Grid.Column="6" Grid.Row="4" Click="GameRoLL" BorderThickness="0" Margin="-4" Template="{StaticResource NoMouseOverButtonTemplate}" >
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\button_gameroll.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
 
-        <ListView x:Name="table_players" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" FontFamily="Consolas" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn x:Name="players_col" Header="Игроки" Width="100" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn x:Name="score_col" Header="Очки" Width="50" DisplayMemberBinding="{Binding Score}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-        <Button Grid.Column="1" Grid.Row="4" Content="Start" FontFamily="Consolas" FontSize="18" BorderThickness="5" Click="Start"/>
-
-        <Border Grid.Column="2" Grid.Row="1" BorderThickness="3" BorderBrush="DarkGray" VerticalAlignment="Top" Margin="5">
-            <TextBlock x:Name="current_player"  Text="?" FontFamily="Consolas" FontSize="20" TextAlignment="Center" Background="LightYellow"/>
+        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" BorderThickness="5" BorderBrush="LimeGreen" Margin="3">
+            <ListView x:Name="table_players"  FontFamily="Consolas" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn x:Name="players_col" Header="Игроки" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn x:Name="score_col" Header="Очки" Width="50" DisplayMemberBinding="{Binding Score}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Border>
 
-        <Button x:Name="plus0" Grid.Column="2" Grid.Row="2" Content="0" Width="30" Height="25" HorizontalAlignment="Left" Margin="5" FontFamily="Consolas" FontSize="13" BorderThickness="3" BorderBrush="DarkGray" Click="plus0fun"/>
-        <Button x:Name="plus05" Grid.Column="2" Grid.Row="2" Content="0.5" Width="30" Height="25" HorizontalAlignment="Center" Margin="5" FontFamily="Consolas" FontSize="13" BorderThickness="3" BorderBrush="DarkGray" Click="plus05fun"/>
-        <Button x:Name="plus1" Grid.Column="2" Grid.Row="2" Content="1" Width="30" Height="25" HorizontalAlignment="Right" Margin="5" FontFamily="Consolas" FontSize="13" BorderThickness="3" BorderBrush="DarkGray" Click="plus1fun"/>
+        <Button Grid.Column="1" Grid.Row="4" Click="Start" BorderThickness="0" Margin="-10" Template="{StaticResource NoMouseOverButtonTemplate}" >
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\button_start.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
 
-        <TextBlock Grid.Column="2" Grid.Row="3" Text="Круг" Width="100" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" FontFamily="Consolas" FontSize="16" Margin="0,10,0,0" />
-        <Border Grid.Column="2" Grid.Row="3" Width="100" Height="25" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" BorderThickness="3" BorderBrush="DarkGray">
-            <TextBlock x:Name="lap_game" Text="?" TextAlignment="Center" FontFamily="Consolas" FontSize="15" Background="LightYellow"/>
+        <Border Grid.Column="2" Grid.Row="1" BorderThickness="10" VerticalAlignment="Top" Margin="2">
+            <Border.BorderBrush>
+                <ImageBrush ImageSource="Data\images\resources\log_lines.png" Stretch="UniformToFill"/>
+            </Border.BorderBrush>
+
+            <TextBlock x:Name="current_player" Text="?" FontFamily="FRANKLIN GOTHIC MEDIUM" FontSize="20" TextAlignment="Center" Background="LightYellow"/>
+        </Border>
+        
+        <Border Grid.Column="2" Grid.Row="2" BorderThickness="10" Margin="22,2">
+            <Border.BorderBrush>
+                <ImageBrush ImageSource="Data\images\resources\log_lines.png" Stretch="UniformToFill"/>
+            </Border.BorderBrush>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="plusbut1" Content="+0.0" Width="35" Height="25"  FontFamily="Consolas" FontSize="13" BorderThickness="1" BorderBrush="DarkGray" Click="plusfunbut1"/>
+                <Button x:Name="plusbut2" Content="+0.5" Width="35" Height="25" FontFamily="Consolas" FontSize="13" BorderThickness="1" BorderBrush="DarkGray" Click="plusfunbut2"/>
+                <Button x:Name="plusbut3" Content="+1.0" Width="35" Height="25"  FontFamily="Consolas" FontSize="13" BorderThickness="1" BorderBrush="DarkGray" Click="plusfunbut3"/>
+            </StackPanel>
         </Border>
 
-        <Border Grid.Column="2" Grid.Row="5" Grid.ColumnSpan ="4" BorderThickness="3" BorderBrush="LightSlateGray" Margin="2">
-            <TextBlock x:Name="down_panel" Background="LightGray" FontSize="16" TextAlignment="Center" FontFamily="Consolas" />
+        <TextBlock Grid.Column="2" Grid.Row="3" Text="Круг" Width="100" Height="25" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" FontFamily="Consolas" FontSize="20" Margin="0,10,0,0" Foreground="White" FontWeight="Bold"/>
+        <Border Grid.Column="2" Grid.Row="3" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" BorderThickness="6">
+            <Border.BorderBrush>
+                <ImageBrush ImageSource="Data\images\resources\log_lines.png" Stretch="UniformToFill"/>
+            </Border.BorderBrush>
+            <TextBlock x:Name="lap_game" Text="?" TextAlignment="Center" FontFamily="FRANKLIN GOTHIC MEDIUM" FontSize="15" Background="LightYellow"/>
         </Border>
-            
 
+        <Border Grid.Column="2" Grid.Row="5" Grid.ColumnSpan ="4" BorderThickness="5"  Margin="2">
+            <Border.BorderBrush>
+                <ImageBrush ImageSource="Data\images\resources\log_lines.png" Stretch="UniformToFill"/>
+            </Border.BorderBrush>
+            <TextBlock x:Name="down_panel" Background="WhiteSmoke" FontSize="23" TextAlignment="Center" FontFamily="FRANKLIN GOTHIC MEDIUM" Foreground="DimGray"/>
+            <!-- <TextBlock x:Name="down_panel" Background="LightGray" FontSize="16" TextAlignment="Center" FontFamily="Consolas" /> -->
+        </Border>
+
+        
+        
     </Grid>
+    
 </Window>
+    
