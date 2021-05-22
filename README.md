@@ -11,7 +11,7 @@ SpinOs GameRoLL!!! - не такой фановый, поэтому следую
 
 **Интерфейс главного окна**
 
-![alt text](https://sun9-44.userapi.com/impg/IgcYUiHXyDtnT86-0lQ9PcEq2npsWl3zwYS_sA/0xZ2AEAGOlg.jpg?size=786x493&quality=96&sign=39fbb546eb8254bd471444268b2bcffb&type=album)
+![alt text](https://sun9-47.userapi.com/impg/mQ3uRTFkdidPGUyym7lsgd0m8Ke95V4w77JyKg/27SOW7N1XrE.jpg?size=984x612&quality=96&sign=39940a85a25d8ea00673bd349e4e711b&type=album)
 
 По интерфейсу (слева направо / сверху вниз):
 - Таблица игроков
