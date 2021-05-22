@@ -96,9 +96,49 @@ namespace SpinOs
         {
             if(players_list.Count > 0)
             {
-                GameRoLL gr = new GameRoLL();
+                GameRoLL_Mode gr = new GameRoLL_Mode();
                 gr.Owner = this;
                 gr.ShowDialog();
+                if (additionGameRoLL == 0)
+                {
+                    down_panel.Text = "Игрок " + players_list[indexer % (players_list.Count)].Name + " не получает очков ";
+                }
+                else
+                {
+                    string temp_score;
+                    switch (additionGameRoLL)
+                    {
+                        case 1.0: temp_score = "очко"; break;
+                        default: temp_score = "очка"; break;
+                    }
+                    down_panel.Text = "[ Игрок " + players_list[indexer % (players_list.Count)].Name + "] получает " + additionGameRoLL + " " + temp_score;
+                }
+
+                players_list[indexer % (players_list.Count)].Score += additionGameRoLL; //присваивание очков игроку //мод здесь для "кольцевой очереди" или типо того, нз как это называется 
+                indexer++;
+                current_player.Text = players_list[indexer % (players_list.Count)].Name; //Переход к след.игроку // тоже мод
+
+                update_table(); // обновление таблицы после присваивания очков
+
+                additionGameRoLL = 0;
+            }
+            else 
+            {
+                down_panel.Text = " Добавьте игроков! ";
+                down_panel.Background = Brushes.Red;
+                await Task.Delay(100);
+                down_panel.Background = Brushes.LightGray;
+            }
+            
+        }
+
+        private async void FunRoLL(object sender, RoutedEventArgs e)
+        {
+            if (players_list.Count > 0)
+            {
+                funRoLL_Mode fr = new funRoLL_Mode();
+                fr.Owner = this;
+                fr.ShowDialog();
                 if (additionGameRoLL == 0)
                 {
                     down_panel.Text = "Игрок " + players_list[indexer % (players_list.Count)].Name + " не получает очков ";
@@ -123,14 +163,13 @@ namespace SpinOs
 
                 additionGameRoLL = 0;
             }
-            else 
+            else
             {
                 down_panel.Text = " Добавьте игроков! ";
                 down_panel.Background = Brushes.Red;
                 await Task.Delay(100);
                 down_panel.Background = Brushes.LightGray;
             }
-            
         }
 
         public void scoring()
@@ -191,23 +230,28 @@ namespace SpinOs
             }
             if (indexer % players_list.Count == 0) update_lap();
         }
-                                                                                //все таски с делеями нужны для визуальной составляющей, но пока беды с асинхроном, потоками и тп
-                                                                                //некоторые задачи выполняются до других и искажают данные 
-        private void plusfunbut1(object sender, RoutedEventArgs e)
+
+        private void plusfunbut0(object sender, RoutedEventArgs e)
         {
             double varPlus = 0;
+            plus(varPlus, "очков.");
+        }
+
+        private void plusfunbut1(object sender, RoutedEventArgs e)
+        {
+            double varPlus = 3;
             plus(varPlus,"очков.");
         }
 
         private void plusfunbut2(object sender, RoutedEventArgs e)
         {
-            double varPlus = 0.5;
+            double varPlus = 5;
             plus(varPlus, "очков.");
         }
 
         private void plusfunbut3(object sender, RoutedEventArgs e)
         {
-            double varPlus = 1;
+            double varPlus = 7;
             plus(varPlus,"очко.");
         }
         private void plus(double x, string end)
@@ -230,6 +274,5 @@ namespace SpinOs
             lap++;
             lap_game.Text = lap.ToString();
         }
-
     }
 }

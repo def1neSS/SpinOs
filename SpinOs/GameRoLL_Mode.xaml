@@ -8,7 +8,7 @@
          Title="SpinOs GameRoLL!!!" Height="500" Width="800" WindowStartupLocation="CenterOwner" >
 
     <Window.Background>
-        <ImageBrush x:Name="GameRoLLBackground"/>
+        <ImageBrush ImageSource="Data\images\wall_GameRoLL.png"/>
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,8 +24,11 @@
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.1*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.13*"/>
         </Grid.RowDefinitions>
 
         <ComboBox x:Name="complexity_menu" Grid.Row="1" Grid.Column="1" Text="" FontFamily="MONACO" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment ="Center" Margin="2" Background="LightGray" >
@@ -37,8 +40,11 @@
 
         <CheckBox x:Name="ISPercentage" Grid.Row="2" Grid.Column="1" Content="Проценты" FontFamily="Consolas" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="False"/>
 
-        <Button Grid.Row="1" Grid.Column="2" Content="RoLL" FontFamily="Consolas" FontSize="18" FontWeight="UltraBold" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"  Margin="2,2,2,0" Background="DodgerBlue" BorderThickness="2" BorderBrush="Blue" Click="roll_fun" Height="27" VerticalAlignment="Top"/>
-
+        <Button Grid.Row="3" Grid.Column="0" Click="roll_fun" BorderThickness="0" Margin="2" Template="{StaticResource NoMouseOverButtonTemplate}">
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\GameRoLL_RoLL_button.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
 
         <TextBlock Grid.Row="0" Grid.Column="1" Text="Сложность распределения" TextWrapping="Wrap" TextAlignment="Center" FontSize="19" FontFamily="FRANKLIN GOTHIC MEDIUM" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 
@@ -46,6 +52,11 @@
         <TextBlock Grid.Row="0" Grid.Column="4" Text="Тип результата" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" FontFamily="FRANKLIN GOTHIC MEDIUM" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="0" Grid.Column="5" Text="Разброс точности" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" FontFamily="FRANKLIN GOTHIC MEDIUM" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 
+        <Border Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Margin="0">
+            <Border.Background>
+                <ImageBrush ImageSource="Data\images\resources\button_lines_short.png" Stretch="UniformToFill"/>
+            </Border.Background>
+        </Border>
         <TextBlock x:Name="roll_slot_1" Grid.Row="1" Grid.Column="3" Text="-----" TextAlignment="Center" FontSize="18" FontFamily="Monaco" Background="CornflowerBlue" Margin="2" FontWeight="DemiBold" Foreground="White" />
         <TextBlock x:Name="roll_slot_2" Grid.Row="1" Grid.Column="4" Text="-----" TextAlignment="Center" FontSize="18" FontFamily="Monaco" Background="CornflowerBlue" Margin="2" FontWeight="DemiBold" Foreground="White" />
         <TextBlock x:Name="roll_slot_3" Grid.Row="1" Grid.Column="5" Text="-----" TextAlignment="Center" FontSize="18" FontFamily="Monaco" Background="CornflowerBlue" Margin="2" FontWeight="DemiBold" Foreground="White" />
@@ -53,22 +64,67 @@
         <TextBlock Grid.Row="2" Grid.Column="3" Text="Моды" TextWrapping="Wrap" TextAlignment="Center" FontSize="18" FontFamily="Consolas" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="2" Grid.Column="5" Text="Очки" TextWrapping="Wrap" TextAlignment="Center" FontSize="18" FontFamily="Consolas" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 
-        <Button x:Name="fc_button" Grid.Column="2" Grid.Row="3" Content="FC" Height="70" VerticalAlignment="Bottom" Margin="10,0,10,183" Background="LawnGreen" BorderThickness="3" FontSize="20" FontFamily="Consolas" FontWeight="Bold" Click="fc_button_fun" />
-        <Button x:Name="pass_button" Grid.Column="2" Grid.Row="3" Content="Pass" Height="70" VerticalAlignment="Bottom" Margin="10,0,10,100" Background="Orange" BorderThickness="3" FontSize="20" FontFamily="Consolas" FontWeight="Bold" Click="pass_button_fun"/>
-        <Button x:Name="fail_button" Grid.Column="2" Grid.Row="3" Content="Fail" Height="70" VerticalAlignment="Bottom" Margin="10,0,10,17" Background="OrangeRed" BorderThickness="3" FontSize="20" FontFamily="Consolas" FontWeight="Bold" Click="fail_button_fun"/>
 
-        <Border Grid.Row="3" Grid.Column="3" BorderThickness="2" BorderBrush="DarkGray" Margin="3">
-            <TextBlock x:Name="rule1" Text="" TextWrapping="Wrap"  Background="LightGray" FontFamily="Consolas"/>
-        </Border>
-        <Border Grid.Row="3" Grid.Column="4" BorderThickness="2" BorderBrush="DarkGray" Margin="3">
-            <TextBlock x:Name="rule2" TextWrapping="Wrap"  Background="LightGray" FontFamily="Consolas"/>
-        </Border>
-        <Border Grid.Row="3" Grid.Column="5" BorderThickness="2" BorderBrush="DarkGray" Margin="3">
-            <TextBlock x:Name="rule3" TextWrapping="Wrap"  Background="LightGray" FontFamily="Consolas"/>
+        <Button x:Name="full_random" Grid.Row="3" Grid.Column="2" Click="full_random_button_fun" BorderThickness="0" Margin="1" Template="{StaticResource NoMouseOverButtonTemplate}">
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\GameRoLL_Full_Random_button.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+        <!-- .......Кнопки...... -->
+        <Border Grid.Row="5" Grid.Column="1" BorderThickness="5" Margin="10" VerticalAlignment="Center">
+            <Border.BorderBrush>
+                <ImageBrush ImageSource="Data\images\resources\button_lines_short.png" Stretch="UniformToFill"/>
+            </Border.BorderBrush>
+            <TextBlock Text="Результат:" FontSize="16" FontFamily="Consolas" FontWeight="Bold" TextAlignment="Center" Background="LightGray"/>
         </Border>
 
-        <Border Grid.Row="6" Grid.ColumnSpan="6" BorderBrush ="Black" BorderThickness="2">
-            <TextBlock x:Name="ProgLog" Background="PapayaWhip"/>
+        <Button x:Name="fc_button" Grid.Row="6" Grid.Column="0" Click="fc_button_fun" BorderThickness="0" Template="{StaticResource NoMouseOverButtonTemplate}">
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\GameRoLL_FC_button.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="pass_button" Grid.Row="6" Grid.Column="1" Click="pass_button_fun" BorderThickness="0" Template="{StaticResource NoMouseOverButtonTemplate}">
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\GameRoLL_Pass_button.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="fail_button" Grid.Row="6" Grid.Column="2" Click="fail_button_fun" BorderThickness="0" Template="{StaticResource NoMouseOverButtonTemplate}">
+            <Button.Background>
+                <ImageBrush ImageSource="Data\images\resources\GameRoLL_Fail_button.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+
+        <Border Grid.Row="3" Grid.Column="3" Grid.RowSpan="4" BorderThickness="2" BorderBrush="Green" Margin="3">
+            <TextBlock x:Name="rule1" Text="" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Consolas" FontWeight="Bold">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="WhiteSmoke" Opacity="0.5"/>
+                </TextBlock.Background>
+            </TextBlock>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="4" Grid.RowSpan="4" BorderThickness="2" BorderBrush="Green" Margin="3">
+            <TextBlock x:Name="rule2" TextWrapping="Wrap" FontFamily="Consolas" FontWeight="Bold">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="WhiteSmoke" Opacity="0.5"/>
+                </TextBlock.Background>
+            </TextBlock>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="5" Grid.RowSpan="4" BorderThickness="2" BorderBrush="Green" Margin="3">
+            <TextBlock x:Name="rule3" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Consolas" FontWeight="Bold">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="WhiteSmoke" Opacity="0.5"/>
+                </TextBlock.Background>
+            </TextBlock>
+        </Border>
+
+        <Border Grid.Row="7" Grid.ColumnSpan="6" BorderThickness="5">
+            <Border.BorderBrush>
+                <ImageBrush ImageSource="Data\images\resources\button_lines_short.png" Stretch="UniformToFill"/>
+            </Border.BorderBrush>
+            <TextBlock x:Name="Game_RoLL_infobar" Background="WhiteSmoke" FontSize="23" TextAlignment="Center" FontFamily="FRANKLIN GOTHIC MEDIUM" Foreground="DimGray"/>
         </Border>
 
 

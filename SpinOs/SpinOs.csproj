@@ -58,6 +58,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\MainWindow_InitData.cs" />
+    <Compile Include="funRoLL_Mode.xaml.cs">
+      <DependentUpon>funRoLL_Mode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameRoLL_Mode.xaml.cs">
       <DependentUpon>GameRoLL_Mode.xaml</DependentUpon>
     </Compile>
@@ -68,7 +71,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GameRoLL.xaml">
+    <Page Include="funRoLL_Mode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -92,9 +95,6 @@
     <Compile Include="Data\Difficulty.cs" />
     <Compile Include="Data\GameRoLL_InitData.cs" />
     <Compile Include="Data\Player.cs" />
-    <Compile Include="GameRoLL.xaml.cs">
-      <DependentUpon>GameRoLL.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -182,6 +182,39 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\wall_main.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\wall_fun_RoLL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\button_funroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\button_lines_short.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\button_lines_short_orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\wall_GameRoLL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\GameRoLL_FC_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\GameRoLL_Pass_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\GameRoLL_Fail_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\GameRoLL_Full_Random_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\GameRoLL_RoLL_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\resources\FunRoLL_RoLL_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

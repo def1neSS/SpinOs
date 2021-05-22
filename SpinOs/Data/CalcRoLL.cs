@@ -16,79 +16,99 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using SpinOs.Data;
+using System.Windows.Threading;
 using static SpinOs.Data.GameRoLL_InitData;
 
 namespace SpinOs.Data
 {
     class CalcRoLL
     {
+        public int mstime_lap = 50; //milliseconds
+        public int laps = 10;
+
         public void modeRoLL(List<TextBlock> slots, int indexer)
         {
-            string temp_text = "";
-            Random rnd = new Random();
-            int per = rnd.Next(0, 100);
-            List<int> rangediff = new List<int>();
-            Console.WriteLine(per);
-            for(int i = 0; i < mods.Count; i++) //делает список сумм 1 12 123 1234 12345
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
-                rangediff.Add(diff_listnew[indexer].Rating_complexity[i]);
-                //Console.WriteLine(rangediff[i]);
-                if(i!=0) rangediff[i] += rangediff[i-1];
-            }
+                int d = 0;
+                Random rnd = new Random();
+                int per = rnd.Next(0, 100);
+                List<int> rangediff = new List<int>();
 
-            int d = 0;
-            foreach(int s in rangediff)
-            {
-                if (per < s)
+                for(int i = 0; i < mods.Count; i++) //делает список сумм 1 12 123 1234 12345
                 {
-                    temp_text = mods[d];
+                    rangediff.Add(diff_listnew[indexer].Rating_complexity[i]);
+                    if(i!=0) rangediff[i] += rangediff[i-1];
+                    Console.WriteLine(rangediff[i]);
                 }
-                else
+
+                
+                foreach(int s in rangediff) //вычисление выпавшего значения
                 {
-                    d++;
+                    if (per < s)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        d++;
+                    }
                 }
-            }
-            slots[0].Text = temp_text;
-            //waiting(slots, 0, temp_text);
+                Console.WriteLine(d);
+                Console.WriteLine(per);
+                waiting(slots, 0, mods, d);
+            });
+
         }
 
         public void resultType(List<TextBlock> slots, int indexer)
         {
-            int per;
-            string temp_text;
-            Random rnd = new Random();
-            slots[1].Background = Brushes.Blue;
-            
-            per = rnd.Next(0, 100);
-            if (per > 80) { /*slots[1].Text*/ temp_text = result_type[0].ToString(); } // 20 %  -  FC
-            else { /*slots[1].Text*/temp_text = result_type[1].ToString(); }         // 80 %  -  PASS
-            slots[1].Background = Brushes.CornflowerBlue;
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                int index_of_result_type_list;
+                Random rnd = new Random();
+                int per = rnd.Next(0, 100);
 
-            waiting(slots, 1, temp_text);
+                if (per > 80) { index_of_result_type_list = 0; } // 20 %  -  FC
+                else { index_of_result_type_list = 1; }         // 80 %  -  PASS
+
+                waiting(slots, 1, result_type, index_of_result_type_list);
+            });
         }
 
         public void percantage(List<TextBlock> slots, int indexer)
         {
             string temp_text;
             Random rnd = new Random();
-            slots[2].Background = Brushes.Blue;
             int temp_num = 0;
             
-            /*slots[2].Text*/ temp_text = temp_num.ToString() + " - " + (temp_num + diff_listnew[indexer].Percentage_complexity).ToString() + " %";
-            slots[2].Background = Brushes.CornflowerBlue;
+            temp_text = temp_num.ToString() + " - " + (temp_num + diff_listnew[indexer].Percentage_complexity).ToString() + " %";
 
-            waiting(slots, 2, temp_text);
+            //waiting(slots, 2, temp_text, null);
         }
 
-        public void waiting(List<TextBlock> slots, int index, string value)
+        public async void waiting(List<TextBlock> slots, int index, List<string> list, int finalize_value)
         {
-            for (int i = 0; i < 10; i++)
+            System.Windows.Application.Current.Dispatcher.Invoke(() => { slots[index].Background = Brushes.Blue; });
+
+            Random rnd = new Random();
+            int rnd_number;
+            for (int i = 0; i < laps; i++)
             {
-                slots[index].Text = "O";
-                Task.Delay(50);
-                slots[index].Text = "o'";
+                rnd_number = rnd.Next(0, list.Count);
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                {
+                    slots[index].Text = list[i%list.Count];
+                });
+                await Task.Delay(mstime_lap);
             }
-            slots[index].Text = value;
+            rnd_number = rnd.Next(0, list.Count);
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                slots[index].Text = list[finalize_value];
+                slots[index].Background = Brushes.CornflowerBlue;
+            });
+
         }
     }
 }

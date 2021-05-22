@@ -46,26 +46,32 @@ namespace SpinOs.Data
 
         public static void InitDataFiles()
         {
+            diff_listnew.Clear();
+            mods.Clear();
+            result_type.Clear();
+
             // ИнфоСписок
-            try
+            if (rules[0] == "")
             {
-                using (StreamReader sr = new StreamReader(rulepath, Encoding.UTF8))
+                try
                 {
-                    string line;
-                    int counter = 0;
-                    while ((line = sr.ReadLine()) != null)
+                    using (StreamReader sr = new StreamReader(rulepath, Encoding.UTF8))
                     {
-                        if (counter % 5 == 0) { rules[0] += line + "\n\n\n\n"; rules[1] += "\n"; rules[2] += "\n"; counter++; }
-                        else if (counter == 4 || counter == 9 || counter == 14 || counter == 19) { rules[2] += line + "\n\n\n"; counter++; } //!!!!
-                        else { rules[1] += line + "\n"; counter++; }
+                        string line;
+                        int counter = 0;
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            if (counter % 5 == 0) { rules[0] += line + "\n\n\n\n"; rules[1] += "\n"; rules[2] += "\n"; counter++; }
+                            else if (counter == 4 || counter == 9 || counter == 14 || counter == 19) { rules[2] += line + "\n\n\n"; counter++; } //!!!!
+                            else { rules[1] += line + "\n"; counter++; }
+                        }
                     }
                 }
+                catch
+                {
+                    Console.WriteLine("Reading Error! RULES");
+                }
             }
-            catch
-            {
-                Console.WriteLine("Reading Error! RULES");
-            }
-
             //Новый список сложностей
             try
             {

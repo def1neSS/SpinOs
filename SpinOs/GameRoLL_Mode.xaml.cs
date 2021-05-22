@@ -24,21 +24,18 @@ namespace SpinOs
     public partial class GameRoLL_Mode : Window
     {
         public List<TextBlock> slots = new List<TextBlock>(); // список текстблоков слотов
-        public List<TextBlock> info_tables = new List<TextBlock>(); // список текстблоков слотов
 
         public GameRoLL_Mode()
         {
-
             InitializeComponent();
-
-            GameRoLLBackground.ImageSource = new BitmapImage(new Uri("../../Data/wall.png", UriKind.Relative)); //фоновая картинка
             InitListsFromData();
         }
 
         public void InitListsFromData() //загрузка из файлов и инициализация данных
         {
-            slots = slots_init(roll_slot_1, roll_slot_2, roll_slot_3);
+            GameRoLL_InitData.InitDataFiles();
 
+            slots = slots_init(roll_slot_1, roll_slot_2, roll_slot_3);
             rule1.Text = rules[0];
             rule2.Text = rules[1];
             rule3.Text = rules[2];
@@ -61,18 +58,21 @@ namespace SpinOs
             return indexer;
         }
 
-        private void roll_fun(object sender, RoutedEventArgs e) //собственно, сам процесс ролла
+        private async void roll_fun(object sender, RoutedEventArgs e) //собственно, сам процесс ролла
         {
             if (complexity_menu.Text != "")
             {
-                int indexer = detect_difficulty();
+                int indexer = detect_difficulty(); // получение индекса нужных элементов
                 CalcRoLL cl = new CalcRoLL();
 
-                cl.modeRoLL(slots, indexer);
-                cl.resultType(slots, indexer);
-                if (ISPercentage.IsChecked.Value)
+                await Task.Run(() => cl.modeRoLL(slots, indexer)); //ролл мода
+                await Task.Delay(cl.laps * cl.mstime_lap + 2 * cl.mstime_lap); //ожидание потока// кол-во кругов * времся круга + на всякий случай время двух кругов
+                await Task.Run(() => cl.resultType(slots, indexer)); //ролл типа результата
+                await Task.Delay(cl.laps * cl.mstime_lap + 2 * cl.mstime_lap); // -//-
+
+                if (ISPercentage.IsChecked.Value) //проверка на галочку процентов
                 {
-                    cl.percantage(slots, indexer);
+                    await Task.Run(() => cl.percantage(slots, indexer));
                 }
                 else
                 {
@@ -84,20 +84,27 @@ namespace SpinOs
                 alertDiffChoose();
             }
         }
-        //читаются данные с контрола, а нужно из списка результатов
+
+        private void full_random_button_fun(object sender, RoutedEventArgs e)
+        {
+            Random rnd = new Random();
+            int index_diff = rnd.Next(0, diff_listnew.Count);
+            complexity_menu.Text = diff_listnew[index_diff].Name;
+            roll_fun(null, null);
+        }
+
         private void fc_button_fun(object sender, RoutedEventArgs e)
         {
             if (complexity_menu.Text != "")
             {
                 calc_result_score();
-
                 switch (slots[1].Text)
                 {
                     case "FC": break;
                     case "Pass": MainWindow.additionGameRoLL *= 1.25; break;
                     default: MainWindow.additionGameRoLL = 0; break;
                 }
-
+                Console.WriteLine(MainWindow.additionGameRoLL);
                 Close();
             }
             else
@@ -111,7 +118,6 @@ namespace SpinOs
             if (complexity_menu.Text != "")
             {
                 calc_result_score();
-                Console.WriteLine(slots[1].Text);
                 switch (slots[1].Text)
                 {
                     case "FC": MainWindow.additionGameRoLL *= 0.25; break;
@@ -144,25 +150,25 @@ namespace SpinOs
         {
             if (complexity_menu.Text == diff_listnew[0].Name)
             {
-                MainWindow.additionGameRoLL = 1;
+                MainWindow.additionGameRoLL = 4;
             }
             else if (complexity_menu.Text == diff_listnew[1].Name)
             {
-                MainWindow.additionGameRoLL = 1.5;
+                MainWindow.additionGameRoLL = 6;
             }
             else if (complexity_menu.Text == diff_listnew[2].Name)
             {
-                MainWindow.additionGameRoLL = 2;
+                MainWindow.additionGameRoLL = 8;
             }
-            else { MainWindow.additionGameRoLL = 3; }
+            else { MainWindow.additionGameRoLL = 12; }
         }
 
         private async void alertDiffChoose()
         {
-            ProgLog.Text = " Выберите сложность ! ";
-            ProgLog.Background = Brushes.Red;
+            Game_RoLL_infobar.Text = " Выберите сложность ! ";
+            Game_RoLL_infobar.Background = Brushes.Red;
             await Task.Delay(100);
-            ProgLog.Background = Brushes.PapayaWhip;
+            Game_RoLL_infobar.Background = Brushes.PapayaWhip;
         }
 
 
